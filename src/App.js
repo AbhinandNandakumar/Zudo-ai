@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChatWindow from "./components/ChatWindow";
 import MessageInput from "./components/MessageInput";
+import "./App.css"
 
 const App = () => {
   const [messages, setMessages] = useState([]);
@@ -24,7 +25,7 @@ const App = () => {
         },
         body: JSON.stringify({
           prompt: userMessage,
-          sessionId, // Include session ID with each request
+          sessionId, 
         }),
       });
 
@@ -34,16 +35,16 @@ const App = () => {
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "Error: Unable to fetch response." },
+        { sender: "bot", text: "Sorry, some problem occurred. Feel free to retry 😊" },
       ]);
     }
   };
 
   return (
     <div className="h-screen flex flex-col justify-center items-center">
-      <h1 className="text-3xl font-bold mb-6">Zudo AI</h1>
-      <h1 className="text-xl text-gray-500 mb-6">Your Caption Assistant</h1>
-      <div className="bg-slate-300 shadow-lg rounded-lg p-6 w-3/4 max-w-3xl">
+      <h1 className="text-5xl font-bold mb-6 zudo">Zudo AI</h1>
+      <h1 className="text-xl text-gray-400 mb-6">Your Caption Assistant</h1>
+      <div className=" shadow-lg rounded-lg p-6 w-3/4 max-w-3xl">
         <ChatWindow messages={messages} />
         <MessageInput onSendMessage={handleSendMessage} />
       </div>
